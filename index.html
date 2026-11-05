@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktiv Loyihalar Portali</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(107, 114, 128, 0.8);
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-200 custom-scrollbar flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass border-b border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                    <i class="fa-solid fa-cubes text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
+                        Loyiha Portali
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">Barcha resurslar bir joyda</p>
+                </div>
+            </div>
+
+            <!-- Quick Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-slate-800/60 p-1.5 rounded-xl border border-slate-200/50 dark:border-slate-700/50">
+                <a href="#sheet-section" class="px-3.5 py-1.5 rounded-lg text-sm font-medium hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm transition-all duration-150 flex items-center gap-2">
+                    <i class="fa-solid fa-table text-emerald-500"></i> Google Sheet
+                </a>
+                <a href="#video-section" class="px-3.5 py-1.5 rounded-lg text-sm font-medium hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm transition-all duration-150 flex items-center gap-2">
+                    <i class="fa-brands fa-youtube text-red-500"></i> Video
+                </a>
+                <a href="#links-section" class="px-3.5 py-1.5 rounded-lg text-sm font-medium hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm transition-all duration-150 flex items-center gap-2">
+                    <i class="fa-solid fa-link text-indigo-500"></i> Havolalar
+                </a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-2">
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-amber-400"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-amber-400"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+        <!-- Hero Quick Access Banner -->
+        <section id="links-section" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- So'rovnoma Card -->
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScG4Zk-CdlvT2EKTVXdeOwabYhx_QNDlFDd0od5lutajYt4xA/viewform?usp=header" target="_blank" rel="noopener noreferrer" 
+               class="group relative overflow-hidden bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                <div class="flex items-start justify-between">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                        O'tish <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        So'rovnoma
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Google Forms orqali so'rovnomani to'ldirish
+                    </p>
+                </div>
+            </a>
+
+            <!-- Prezentatsiya Card -->
+            <a href="https://docs.google.com/presentation/d/153XzK0jxuolsrQHWEpZplA_EZkliW2maDdPy-rkCmg0/edit?usp=sharing" target="_blank" rel="noopener noreferrer" 
+               class="group relative overflow-hidden bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/10 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                <div class="flex items-start justify-between">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                        O'tish <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                        Prezentatsiya
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Google Slides loyiha taqdimotini ko'rish
+                    </p>
+                </div>
+            </a>
+
+            <!-- YouTube External Card -->
+            <a href="https://youtu.be/S50Cw1GF1hk?si=8s9zqSsvzwsoTHhb" target="_blank" rel="noopener noreferrer" 
+               class="group relative overflow-hidden bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-red-500/10 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                <div class="flex items-start justify-between">
+                    <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 flex items-center justify-center text-xl">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-300 border border-red-200 dark:border-red-800">
+                        YouTube <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                        Video Darslik
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Videoni bevosita YouTube'da ochish
+                    </p>
+                </div>
+            </a>
+
+            <!-- Google Sheet External Card -->
+            <a href="https://docs.google.com/spreadsheets/d/18NSGlEqySxP-rmTlagsj9GygFKaeMayWSSK87TYM6kU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" 
+               class="group relative overflow-hidden bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full group-hover:scale-150 transition-transform duration-300"></div>
+                <div class="flex items-start justify-between">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </div>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                        Google Sheets <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                    </span>
+                </div>
+                <div class="mt-4">
+                    <h3 class="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                        Jadval Fayli
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        Jadvalni yangi oynada tahrirlash
+                    </p>
+                </div>
+            </a>
+        </section>
+
+        <!-- Google Sheet Section (Main Workspace) -->
+        <section id="sheet-section" class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-md overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/50">
+                <div class="flex items-center space-x-3">
+                    <div class="p-2 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg">
+                        <i class="fa-solid fa-table text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-slate-900 dark:text-white">Interaktiv Google Sheet Jadvali</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Jadval ma'lumotlarini bevosita shu yerda ko'rishingiz va ishlatishingiz mumkin</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                    <button onclick="reloadIframe('google-sheet-iframe')" class="px-3 py-1.5 text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-right"></i> Yangilash
+                    </button>
+                    <a href="https://docs.google.com/spreadsheets/d/18NSGlEqySxP-rmTlagsj9GygFKaeMayWSSK87TYM6kU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" 
+                       class="px-3.5 py-1.5 text-xs font-medium bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-solid fa-external-link"></i> To'liq ekranda ochish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Embedded Google Sheet Iframe -->
+            <div class="relative w-full h-[600px] bg-slate-100 dark:bg-slate-900">
+                <iframe id="google-sheet-iframe"
+                        src="https://docs.google.com/spreadsheets/d/18NSGlEqySxP-rmTlagsj9GygFKaeMayWSSK87TYM6kU/htmlview?widget=true&headers=false" 
+                        class="w-full h-full border-0" 
+                        loading="lazy"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Media & Secondary Resources Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- YouTube Video Section (2 cols on large screen) -->
+            <section id="video-section" class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-md overflow-hidden flex flex-col">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2 bg-red-500/10 text-red-600 dark:text-red-400 rounded-lg">
+                            <i class="fa-brands fa-youtube text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-slate-900 dark:text-white">Video Darslik</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Loyihaga tegishli video qo'llanma</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative w-full pt-[56.25%] bg-black">
+                    <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/S50Cw1GF1hk" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+
+            <!-- Quick Action Sidebar / Info (1 col on large screen) -->
+            <div class="space-y-6 flex flex-col justify-between">
+                
+                <!-- Card for Form & Presentation Summary -->
+                <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-6 shadow-md relative overflow-hidden flex-1 flex flex-col justify-between">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl"></div>
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-xs font-semibold mb-4">
+                            <i class="fa-solid fa-rocket"></i> Tezkor Havola
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">So'rovnomada qatnashing</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            Fikringiz biz uchun muhim! Loyiha sifatini oshirish uchun qisqa so'rovnomani to'ldirishingizni so'raymiz.
+                        </p>
+                    </div>
+
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScG4Zk-CdlvT2EKTVXdeOwabYhx_QNDlFDd0od5lutajYt4xA/viewform?usp=header" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full text-center py-3 px-4 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white font-medium rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-pen-to-square"></i> So'rovnomani To'ldirish
+                    </a>
+                </div>
+
+                <!-- Presentation Info Card -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-md">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-powerpoint"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 dark:text-white">Loyiha Taqdimoti</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Google Presentation slaydlari</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                        Loyiha taqdimoti va slaydlarni ko'rib chiqish hamda sharh qoldirish uchun quyidagi tugmadan foydalaning.
+                    </p>
+                    <a href="https://docs.google.com/presentation/d/153XzK0jxuolsrQHWEpZplA_EZkliW2maDdPy-rkCmg0/edit?usp=sharing" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full text-center py-2.5 px-4 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 font-semibold text-xs rounded-xl border border-amber-500/30 transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-display"></i> Prezentatsiyani Oching
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <p>© 2026 Loyiha Portali. Barcha huquqlar himoyalangan.</p>
+            <div class="flex items-center space-x-4">
+                <a href="#sheet-section" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Google Sheet</a>
+                <span>•</span>
+                <a href="#video-section" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Video</a>
+                <span>•</span>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScG4Zk-CdlvT2EKTVXdeOwabYhx_QNDlFDd0od5lutajYt4xA/viewform?usp=header" target="_blank" class="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">So'rovnoma</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Iframe reload helper
+        function reloadIframe(iframeId) {
+            const iframe = document.getElementById(iframeId);
+            if (iframe) {
+                iframe.src = iframe.src;
+            }
+        }
+    </script>
+</body>
+</html>
